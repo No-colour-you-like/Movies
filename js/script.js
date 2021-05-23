@@ -1,54 +1,66 @@
 'use strict';
 
 const contentList = document.querySelector('#content-list'),
-  top250 = document.querySelector('#top-250');
+  contentTitle = document.querySelector('#content-title'),
+  popularBtn = document.querySelector('#popular-btn'),
+  top250Btn = document.querySelector('#top-250');
 
 
-const movies1 = async (id) => {
-  const movies = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=4ec0b2b9`);
-  const resp = await movies.json();
-};
-
-const fetchMovies = async () => {
+const fetch250Movies = async () => {
   const movies = await fetch('js/top250.json');
   const resp = await movies.json();
   const top250 = await resp.items;
 
+  await fetchMovieInfo(top250);
+};
 
-  for await (const id of top250) {
+
+const fetchPopularMovies = async () => {
+  const movies = await fetch('js/popular.json');
+  const resp = await movies.json();
+  const popularMovies = await resp.items;
+
+  fetchMovieInfo(popularMovies);
+};
+
+
+
+const fetchMovieInfo = async (moviesList) => {
+  for await (const id of moviesList) {
     const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${id.id}&apikey=4ec0b2b9`);
     const respInfo = await fetchMoviesInfo.json();
-    
+
     const name = respInfo.Title,
       genre = respInfo.Genre,
       rating = respInfo.imdbRating,
       poster = respInfo.Poster,
-      year = respInfo.Year;
+      director = respInfo.Director,
+      crew = respInfo.Actors,
+      year = respInfo.Year,
+      runtime = respInfo.Runtime;
 
-      createMoviePrev(name, genre, rating, poster, year);
-
+    createMoviePrev(name, genre, rating, poster, director, crew, year, runtime);
   }
-
-
-
 };
 
-
-fetchMovies();
-
-
-const createMoviePrev = (name, genre, rating, poster, year) => {
+const createMoviePrev = (name, genre, rating, poster, director, crew, year, runtime) => {
   const newMovie = document.createElement('div');
   newMovie.className = 'movie__prev';
+
+  if (poster.toLowerCase() == 'n/a') {
+    poster = 'img/empty-poster.jpg';
+  };
+
   newMovie.innerHTML = `
   <div class="movie__prev">
     <div class="movie__rating">${rating}</div>
     <div class="movie__poster">
       <img src=${poster} alt="movie-poster" class="movie__poster-img">
       <div class="movie__descr">
-        <p class="movie__director">Tada</p>
-        <p class="movie__crew">Tada</p>
+        <p class="movie__director">${director}</p>
+        <p class="movie__crew">${crew}</p>
         <div class="movie__year">${year}</div>
+        <p class="movie__runtime">${runtime}</p>
       </div>
     </div>
     <p class="movie__name">${name}</p>
@@ -59,43 +71,15 @@ const createMoviePrev = (name, genre, rating, poster, year) => {
   contentList.append(newMovie)
 };
 
-// {
-//   "Title": "The Shawshank Redemption",
-//   "Year": "1994",
-//   "Rated": "R",
-//   "Released": "14 Oct 1994",
-//   "Runtime": "142 min",
-//   "Genre": "Drama",
-//   "Director": "Frank Darabont",
-//   "Writer": "Stephen King (short story \"Rita Hayworth and Shawshank Redemption\"), Frank Darabont (screenplay)",
-//   "Actors": "Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler",
-//   "Plot": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-//   "Language": "English",
-//   "Country": "USA",
-//   "Awards": "Nominated for 7 Oscars. Another 21 wins & 36 nominations.",
-//   "Poster": "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-//   "Ratings": [
-//       {
-//           "Source": "Internet Movie Database",
-//           "Value": "9.3/10"
-//       },
-//       {
-//           "Source": "Rotten Tomatoes",
-//           "Value": "91%"
-//       },
-//       {
-//           "Source": "Metacritic",
-//           "Value": "80/100"
-//       }
-//   ],
-//   "Metascore": "80",
-//   "imdbRating": "9.3",
-//   "imdbVotes": "2,381,013",
-//   "imdbID": "tt0111161",
-//   "Type": "movie",
-//   "DVD": "15 Aug 2008",
-//   "BoxOffice": "$28,699,976",
-//   "Production": "Columbia Pictures, Castle Rock Entertainment",
-//   "Website": "N/A",
-//   "Response": "True"
-// }
+
+top250Btn.addEventListener('click', () => {
+  contentList.innerHTML = '';
+  contentTitle.textContent = 'Топ 250 IMDb'
+  fetch250Movies();
+});
+
+popularBtn.addEventListener('click', () => {
+  contentList.innerHTML = '';
+  contentTitle.textContent = 'Популярные';
+  fetchPopularMovies();
+});
