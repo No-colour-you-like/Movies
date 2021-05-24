@@ -45,6 +45,9 @@
   display: flex
 
 .menu 
+  display: flex
+  flex-direction: column
+  align-items: center
   width: 250px 
   padding: 30px 0
   background-color: #191C1FFF
@@ -74,6 +77,11 @@
       font-size: 30px
       color: #596065FF
       transition: 0.3s
+  &__divider 
+    width: 90%
+    height: 1px
+    margin: 30px auto
+    background-color: #777777
 
 
 .content 
@@ -190,6 +198,30 @@
     font-size: 16px 
     font-weight: 600
     color: #87A9C0FF
+  &__filter 
+    width: 200px
+    &-single 
+      margin-bottom: 20px
+    &-check 
+      padding: 5px 0
+      input 
+        margin-right: 10px
+      label 
+        font-size: 18px
+    &-year-title, &-genre-title
+      font-size: 25px
+      margin-bottom: 15px
+    &-btn 
+      display: block
+      margin: 0 auto
+      padding: 5px 25px
+      font-size: 22px
+      font-weight: 600
+      background-color: #FF424FFF
+      box-shadow: 0 0 5px #222B31FF
+      color: #fff
+      border: none
+      outline: none
 
 
 @keyframes loading-animation

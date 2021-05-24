@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
     crossorigin="anonymous" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" />
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -71,6 +73,26 @@
             </div>
             <div class="icon"></div>
           </nav>
+          <div class="menu__divider"></div>
+          <div class="movie__filter">
+            <div class="movie__filter-single">
+              <p class="movie__filter-year-title">Год</p>
+              <input type="text" class="js-range-slider" name="my_range" value="" />
+            </div>
+            <div class="movie__filter-single">
+              <p class="movie__filter-genre-title">Жанр</p>
+              <div class="movie__filter-check">
+                <input id="drama-checkbox" type="checkbox">
+                <label for="drama-checkbox">Drama</label>
+              </div>
+              <div class="movie__filter-check">
+                <input id="action-checkbox" type="checkbox">
+                <label for="action-checkbox">Action</label>
+              </div>
+            </div>
+            <button id="movie-filter-btn" class="movie__filter-btn">Найти</button>
+
+          </div>
         </aside>
         <div class="content">
           <h1 id="content-title" class="content__title">Новые релизы</h1>
@@ -85,6 +107,8 @@
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
   <script src="js/script.js"></script>
 </body>
 

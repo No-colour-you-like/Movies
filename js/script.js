@@ -7,7 +7,8 @@ const contentList = document.querySelector('#content-list'),
   popularBtn = document.querySelector('#popular-btn'),
   top250MoviesBtn = document.querySelector('#top-250-movies'),
   top250TvBtn = document.querySelector('#top-250-tv'),
-  loadingModal = document.querySelector('#loading-modal');
+  loadingModal = document.querySelector('#loading-modal'),
+  movieFIlterBtn = document.querySelector('#movie-filter-btn');
 
 const allNavigationBtns = document.querySelectorAll('.menu__name');
 
@@ -71,7 +72,7 @@ const fetchMovieInfo = async (moviesList) => {
       runtime = respInfo.Runtime;
 
     await loadingModal.classList.add('loading-show');
-      
+
     allNavigationBtns.forEach(btn =>
       btn.classList.add('disable-btn')
     );
@@ -83,6 +84,8 @@ const fetchMovieInfo = async (moviesList) => {
   for await (const btn of allNavigationBtns) {
     btn.classList.remove('disable-btn');
   }
+
+
 };
 
 const createMoviePrev = (name, genre, rating, poster, director, crew, year, runtime) => {
@@ -98,7 +101,6 @@ const createMoviePrev = (name, genre, rating, poster, director, crew, year, runt
   }
 
   newMovie.innerHTML = `
-  <div class="movie__prev">
     <div class="movie__rating">${rating}</div>
     <div class="movie__poster">
       <img src=${poster} alt="movie-poster" class="movie__poster-img">
@@ -111,7 +113,6 @@ const createMoviePrev = (name, genre, rating, poster, director, crew, year, runt
     </div>
     <p class="movie__name">${name}</p>
     <p class="movie__genre">${genre}</p>
-  </div>
   `;
 
   contentList.append(newMovie);
@@ -146,4 +147,36 @@ cinemaBtn.addEventListener('click', () => {
 soonBtn.addEventListener('click', () => {
   clearListAndTilte('Скоро в прокате');
   fetchSoonMovies();
+});
+
+//Year filter slider 
+$(".js-range-slider").ionRangeSlider({
+  type: "double",
+  min: 1900,
+  max: 2021,
+  from: 1950,
+  to: 1960,
+  grid: false
+});
+
+const movieYearFilterData = $(".js-range-slider").data("ionRangeSlider");
+
+
+const filterMovies = () => {
+  const movies = document.querySelectorAll('.movie__prev');
+
+  movies.forEach(movie => {
+    const movieYear = +movie.querySelector('.movie__year').textContent.slice(0, 4);
+    movie.classList.remove('display-none');
+    
+    if (!(movieYear > movieYearFilterData.old_from && movieYear < movieYearFilterData.old_to)) {
+      movie.classList.add('display-none');
+    }
+  });
+
+};
+
+
+movieFIlterBtn.addEventListener('click', () => {
+  filterMovies();
 });
