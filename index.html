@@ -29,9 +29,17 @@
       <main class="main">
         <aside class="menu">
           <nav class="menu__navigation">
-            <div class="menu__name">
+            <div id="cinema-btn" class="menu__name">
               <p class="menu__name-text">
-                Новые релизы
+                В кинотеатрах
+              </p>
+              <div class="menu__name-arrow">
+                &#8594
+              </div>
+            </div>
+            <div id="soon-btn" class="menu__name">
+              <p class="menu__name-text">
+                Скоро в прокате
               </p>
               <div class="menu__name-arrow">
                 &#8594
@@ -45,7 +53,7 @@
                 &#8594
               </div>
             </div>
-            <div id="top-250" class="menu__name">
+            <div id="top-250-movies" class="menu__name">
               <p class="menu__name-text">
                 Топ 250 IMDb
               </p>
@@ -53,11 +61,24 @@
                 &#8594
               </div>
             </div>
+            <div id="top-250-tv" class="menu__name">
+              <p class="menu__name-text">
+                Топ 250 TV IMDb
+              </p>
+              <div class="menu__name-arrow">
+                &#8594
+              </div>
+            </div>
+            <div class="icon"></div>
           </nav>
         </aside>
         <div class="content">
           <h1 id="content-title" class="content__title">Новые релизы</h1>
           <div id="content-list" class="content__list">
+          </div>
+          <div id="loading-modal" class="content__loading">
+            <p class="content__loading-text">Загружаем...</p>
+            <div class="content__loading-icon"></div>
           </div>
         </div>
       </main>

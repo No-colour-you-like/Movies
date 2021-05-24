@@ -2,16 +2,38 @@
 
 const contentList = document.querySelector('#content-list'),
   contentTitle = document.querySelector('#content-title'),
+  cinemaBtn = document.querySelector('#cinema-btn'),
+  soonBtn = document.querySelector('#soon-btn'),
   popularBtn = document.querySelector('#popular-btn'),
-  top250Btn = document.querySelector('#top-250');
+  top250MoviesBtn = document.querySelector('#top-250-movies'),
+  top250TvBtn = document.querySelector('#top-250-tv'),
+  loadingModal = document.querySelector('#loading-modal');
 
+const allNavigationBtns = document.querySelectorAll('.menu__name');
+
+
+const fetchSoonMovies = async () => {
+  const movies = await fetch('js/soon.json');
+  const resp = await movies.json();
+  const soonMovies = await resp.items;
+
+  await fetchMovieInfo(soonMovies);
+};
 
 const fetch250Movies = async () => {
-  const movies = await fetch('js/top250.json');
+  const movies = await fetch('js/top250movies.json');
   const resp = await movies.json();
   const top250 = await resp.items;
 
   await fetchMovieInfo(top250);
+};
+
+const fetch250Tv = async () => {
+  const movies = await fetch('js/top250tv.json');
+  const resp = await movies.json();
+  const top250tv = await resp.items;
+
+  await fetchMovieInfo(top250tv);
 };
 
 
@@ -20,14 +42,23 @@ const fetchPopularMovies = async () => {
   const resp = await movies.json();
   const popularMovies = await resp.items;
 
-  fetchMovieInfo(popularMovies);
+  await fetchMovieInfo(popularMovies);
 };
 
+const fetchCinemaMovies = async () => {
+  const movies = await fetch('js/cinema.json');
+  const resp = await movies.json();
+  const cinemaMovies = await resp.items;
 
+  await fetchMovieInfo(cinemaMovies);
+};
+
+const controller = new AbortController();
+const signal = controller.signal;
 
 const fetchMovieInfo = async (moviesList) => {
-  for await (const id of moviesList) {
-    const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${id.id}&apikey=4ec0b2b9`);
+  for await (const movie of moviesList) {
+    const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${movie.id}&apikey=4ec0b2b9`);
     const respInfo = await fetchMoviesInfo.json();
 
     const name = respInfo.Title,
@@ -39,7 +70,18 @@ const fetchMovieInfo = async (moviesList) => {
       year = respInfo.Year,
       runtime = respInfo.Runtime;
 
+    await loadingModal.classList.add('loading-show');
+      
+    allNavigationBtns.forEach(btn =>
+      btn.classList.add('disable-btn')
+    );
+
     createMoviePrev(name, genre, rating, poster, director, crew, year, runtime);
+  }
+
+  await loadingModal.classList.remove('loading-show');
+  for await (const btn of allNavigationBtns) {
+    btn.classList.remove('disable-btn');
   }
 };
 
@@ -49,7 +91,11 @@ const createMoviePrev = (name, genre, rating, poster, director, crew, year, runt
 
   if (poster.toLowerCase() == 'n/a') {
     poster = 'img/empty-poster.jpg';
-  };
+  }
+
+  if (director.toLowerCase() == 'n/a') {
+    director = '';
+  }
 
   newMovie.innerHTML = `
   <div class="movie__prev">
@@ -68,18 +114,36 @@ const createMoviePrev = (name, genre, rating, poster, director, crew, year, runt
   </div>
   `;
 
-  contentList.append(newMovie)
+  contentList.append(newMovie);
 };
 
 
-top250Btn.addEventListener('click', () => {
+const clearListAndTilte = (titleText) => {
   contentList.innerHTML = '';
-  contentTitle.textContent = 'Топ 250 IMDb'
+  contentTitle.textContent = titleText;
+};
+
+top250MoviesBtn.addEventListener('click', () => {
+  clearListAndTilte('Топ 250 IMDb');
   fetch250Movies();
 });
 
 popularBtn.addEventListener('click', () => {
-  contentList.innerHTML = '';
-  contentTitle.textContent = 'Популярные';
+  clearListAndTilte('Популярные');
   fetchPopularMovies();
+});
+
+top250TvBtn.addEventListener('click', () => {
+  clearListAndTilte('Топ 250 TV IMDb');
+  fetch250Tv();
+});
+
+cinemaBtn.addEventListener('click', () => {
+  clearListAndTilte('В прокате');
+  fetchCinemaMovies();
+});
+
+soonBtn.addEventListener('click', () => {
+  clearListAndTilte('Скоро в прокате');
+  fetchSoonMovies();
 });

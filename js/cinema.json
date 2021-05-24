@@ -1,0 +1,214 @@
+{
+  "items": [
+    {
+      "id": "tt9883996",
+      "title": "Dream Horse",
+      "fullTitle": "Dream Horse (2020)",
+      "year": "2020",
+      "releaseState": "Opening This Week - May 21",
+      "image": "https://imdb-api.com/images/original/MV5BOTQ5MmRlYWItZmNiYS00ZmE5LTg4NjAtZjZjZjNjYTRhMDY1XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio0.6699_AL_.jpg",
+      "runtimeMins": "113",
+      "runtimeStr": "1h 53mins",
+      "plot": "Dream Alliance is an unlikely race horse bred by small-town Welsh bartender Jan Vokes. With no experience, Jan convinces her neighbors to chip in their meager earnings to help raise Dream in the hopes he can compete with the racing elites.",
+      "contentRating": "PG",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "68",
+      "genres": "Biography, Comedy, Drama, Sport",
+      "genreList": [
+        { "key": "Biography", "value": "Biography" },
+        { "key": "Comedy", "value": "Comedy" },
+        { "key": "Drama", "value": "Drama" },
+        { "key": "Sport", "value": "Sport" }
+      ],
+      "directors": "Euros Lyn",
+      "directorList": [{ "id": "nm0528186", "name": "Euros Lyn" }],
+      "stars": "Toni Collette, Damian Lewis, Siân Phillips, Owen Teale",
+      "starList": [
+        { "id": "nm0001057", "name": "Toni Collette" },
+        { "id": "nm0507073", "name": "Damian Lewis" },
+        { "id": "nm0680795", "name": "Siân Phillips" },
+        { "id": "nm0853583", "name": "Owen Teale" }
+      ]
+    },
+    {
+      "id": "tt11655202",
+      "title": "Riders of Justice",
+      "fullTitle": "Riders of Justice (2020)",
+      "year": "2020",
+      "releaseState": "Opening This Week - May 21",
+      "image": "https://imdb-api.com/images/original/MV5BZWVkNTFmNTQtMGRiZC00NjAwLThjYTgtYmI3ZjA2Zjc1MTM1XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_Ratio0.6699_AL_.jpg",
+      "runtimeMins": "116",
+      "runtimeStr": "1h 56mins",
+      "plot": "Markus, who has to go home to his teenage daughter, Mathilde, when his wife dies in a tragic train accident. It seems like an accident until a mathematics geek, who was also a fellow passenger on the train, and his two colleagues show up.",
+      "contentRating": "Not Rated",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "81",
+      "genres": "Action, Comedy, Drama",
+      "genreList": [
+        { "key": "Action", "value": "Action" },
+        { "key": "Comedy", "value": "Comedy" },
+        { "key": "Drama", "value": "Drama" }
+      ],
+      "directors": "Anders Thomas Jensen",
+      "directorList": [{ "id": "nm0421314", "name": "Anders Thomas Jensen" }],
+      "stars": "Mads Mikkelsen, Nikolaj Lie Kaas, Andrea Heick Gadeberg, Lars Brygmann",
+      "starList": [
+        { "id": "nm0586568", "name": "Mads Mikkelsen" },
+        { "id": "nm0509263", "name": "Nikolaj Lie Kaas" },
+        { "id": "nm3723229", "name": "Andrea Heick Gadeberg" },
+        { "id": "nm0117368", "name": "Lars Brygmann" }
+      ]
+    },
+    {
+      "id": "tt8545482",
+      "title": "Zone 414",
+      "fullTitle": "Zone 414 (2021)",
+      "year": "2021",
+      "releaseState": "Opening This Week - May 21",
+      "image": "https://imdb-api.com/images/original/MV5BN2JlMzc1NmItMTVhNy00YjcwLWJiNjAtYmVlNzNlMGM1MjNiXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_Ratio1.7799_AL_.jpg",
+      "runtimeMins": "",
+      "runtimeStr": "",
+      "plot": "Set in the near future in a colony of state-of-the-art humanoid robots. When its creator's daughter goes missing, he hires private investigator David Carmichael, to bring her home. David teams up with Jane, a highly advanced and self-aware A.I., to track down the missing daughter. Moving through the dangerous iron jungle, they rapidly piece together the mystery, uncovering a crime that leads them to question the origins of Zone 414 and the true purpose behind the \"City of Robots.\"",
+      "contentRating": "",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "",
+      "genres": "Sci-Fi, Thriller",
+      "genreList": [
+        { "key": "Sci-Fi", "value": "Sci-Fi" },
+        { "key": "Thriller", "value": "Thriller" }
+      ],
+      "directors": "Andrew Baird",
+      "directorList": [{ "id": "nm1017470", "name": "Andrew Baird" }],
+      "stars": "Guy Pearce, Travis Fimmel, Ned Dennehy, Colin Salmon",
+      "starList": [
+        { "id": "nm0001602", "name": "Guy Pearce" },
+        { "id": "nm1379938", "name": "Travis Fimmel" },
+        { "id": "nm0219329", "name": "Ned Dennehy" },
+        { "id": "nm0758760", "name": "Colin Salmon" }
+      ]
+    },
+    {
+      "id": "tt5144174",
+      "title": "The Dry",
+      "fullTitle": "The Dry (2020)",
+      "year": "2020",
+      "releaseState": "Opening This Week - May 21",
+      "image": "https://imdb-api.com/images/original/MV5BYzdlNzYzMjAtMGVjNi00Nzg4LTkzOTUtNTc0NmE2OTg0NDUwXkEyXkFqcGdeQXVyMTE1MzI2NzIz._V1_Ratio0.6699_AL_.jpg",
+      "runtimeMins": "117",
+      "runtimeStr": "1h 57mins",
+      "plot": "Aaron Falk returns to his drought-stricken hometown to attend a tragic funeral. But his return opens a decades-old wound - the unsolved death of a teenage girl.",
+      "contentRating": "R",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "66",
+      "genres": "Crime, Drama, Mystery, Thriller",
+      "genreList": [
+        { "key": "Crime", "value": "Crime" },
+        { "key": "Drama", "value": "Drama" },
+        { "key": "Mystery", "value": "Mystery" },
+        { "key": "Thriller", "value": "Thriller" }
+      ],
+      "directors": "Robert Connolly",
+      "directorList": [{ "id": "nm0175352", "name": "Robert Connolly" }],
+      "stars": "Eric Bana, Genevieve O'Reilly, Keir O'Donnell, John Polson",
+      "starList": [
+        { "id": "nm0051509", "name": "Eric Bana" },
+        { "id": "nm0642444", "name": "Genevieve O'Reilly" },
+        { "id": "nm1218757", "name": "Keir O'Donnell" },
+        { "id": "nm0689852", "name": "John Polson" }
+      ]
+    },
+    {
+      "id": "tt8526370",
+      "title": "Favolacce",
+      "fullTitle": "Favolacce (2020)",
+      "year": "2020",
+      "releaseState": "Opening This Week - May 21",
+      "image": "https://imdb-api.com/images/original/MV5BMDhmMWE4MjktMGVlNi00ZWU3LWI3MTktZjk5ODkzY2M2NWFlXkEyXkFqcGdeQXVyNTQwMDA5NTg@._V1_Ratio0.6890_AL_.jpg",
+      "runtimeMins": "98",
+      "runtimeStr": "1h 38mins",
+      "plot": "A few families living out on a limb in the suburbs of Rome. Tensions here can explode at any time; ultimately it's the children who bring about the collapse.",
+      "contentRating": "",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "",
+      "genres": "Drama, Mystery, Thriller",
+      "genreList": [
+        { "key": "Drama", "value": "Drama" },
+        { "key": "Mystery", "value": "Mystery" },
+        { "key": "Thriller", "value": "Thriller" }
+      ],
+      "directors": "Damiano D'Innocenzo, Fabio D'Innocenzo",
+      "directorList": [
+        { "id": "nm4462605", "name": "Damiano D'Innocenzo" },
+        { "id": "nm4461870", "name": "Fabio D'Innocenzo" }
+      ],
+      "stars": "Elio Germano, Tommaso Di Cola, Giulietta Rebeggiani, Gabriel Montesi",
+      "starList": [
+        { "id": "nm0314554", "name": "Elio Germano" },
+        { "id": "nm10971622", "name": "Tommaso Di Cola" },
+        { "id": "nm8584079", "name": "Giulietta Rebeggiani" },
+        { "id": "nm7080395", "name": "Gabriel Montesi" }
+      ]
+    },
+    {
+      "id": "tt2093056",
+      "title": "American Fighter",
+      "fullTitle": "American Fighter (2019)",
+      "year": "2019",
+      "releaseState": "Opening This Week - May 21",
+      "image": "https://imdb-api.com/images/original/MV5BZDNhOWU5YmQtZWViZi00MjU0LWJhNjgtYzY5NDhhZTM4NWFmXkEyXkFqcGdeQXVyOTg4MDYyNw@@._V1_Ratio0.6986_AL_.jpg",
+      "runtimeMins": "98",
+      "runtimeStr": "1h 38mins",
+      "plot": "In this gritty action tale, a young wrestler competes in the world of underground fighting to raise money for his ailing mother. But will he survive his next match?",
+      "contentRating": "R",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "",
+      "genres": "Action, Biography",
+      "genreList": [
+        { "key": "Action", "value": "Action" },
+        { "key": "Biography", "value": "Biography" }
+      ],
+      "directors": "Shaun Paul Piccinino",
+      "directorList": [{ "id": "nm1626854", "name": "Shaun Paul Piccinino" }],
+      "stars": "George Kosturos, Tommy Flanagan, Sean Patrick Flanery, Bryan Craig",
+      "starList": [
+        { "id": "nm4719863", "name": "George Kosturos" },
+        { "id": "nm0281107", "name": "Tommy Flanagan" },
+        { "id": "nm0001218", "name": "Sean Patrick Flanery" },
+        { "id": "nm1462958", "name": "Bryan Craig" }
+      ]
+    },
+    {
+      "id": "tt12474056",
+      "title": "New Order",
+      "fullTitle": "New Order (2020)",
+      "year": "2020",
+      "releaseState": "Opening This Week - May 21",
+      "image": "https://imdb-api.com/images/original/MV5BOTcwNmM5MWItYmU5Mi00NmFkLWEwNmMtNWUxY2U1NTIzOWIwXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_Ratio0.6699_AL_.jpg",
+      "runtimeMins": "86",
+      "runtimeStr": "1h 26mins",
+      "plot": "A lavish high-society wedding unexpectedly turns into a class struggle that leads to a violent coup.",
+      "contentRating": "R",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "68",
+      "genres": "Drama",
+      "genreList": [{ "key": "Drama", "value": "Drama" }],
+      "directors": "Michel Franco",
+      "directorList": [{ "id": "nm1633015", "name": "Michel Franco" }],
+      "stars": "Naian González Norvind, Fernando Cuautle, Diego Boneta, Samantha Yazareth Anaya",
+      "starList": [
+        { "id": "nm4580178", "name": "Naian González Norvind" },
+        { "id": "nm9013014", "name": "Fernando Cuautle" },
+        { "id": "nm1546300", "name": "Diego Boneta" },
+        { "id": "nm9813639", "name": "Samantha Yazareth Anaya" }
+      ]
+    }
+  ],
+  "errorMessage": ""
+}

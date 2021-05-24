@@ -1,0 +1,120 @@
+{
+  "items": [
+    {
+      "id": "tt3228774",
+      "title": "Cruella",
+      "fullTitle": "Cruella (2021)",
+      "year": "2021",
+      "releaseState": "May 28",
+      "image": "https://m.media-amazon.com/images/M/MV5BOWI5YTUxOWEtZmRiZS00ZmQxLWE2NzctYTRiODA2NzE1ZjczXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_UX128_CR0,4,128,176_AL_.jpg",
+      "runtimeMins": "134",
+      "runtimeStr": "2h 14mins",
+      "plot": "A live-action prequel feature film following a young Cruella de Vil.",
+      "contentRating": "PG-13",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "",
+      "genres": "Comedy, Crime",
+      "genreList": [
+        { "key": "Comedy", "value": "Comedy" },
+        { "key": "Crime", "value": "Crime" }
+      ],
+      "directors": "Craig Gillespie",
+      "directorList": [{ "id": "nm0318916", "name": "Craig Gillespie" }],
+      "stars": "Emma Stone, Emma Thompson, Joel Fry, Paul Walter Hauser",
+      "starList": [
+        { "id": "nm1297015", "name": "Emma Stone" },
+        { "id": "nm0000668", "name": "Emma Thompson" },
+        { "id": "nm2181128", "name": "Joel Fry" },
+        { "id": "nm3236159", "name": "Paul Walter Hauser" }
+      ]
+    },
+    {
+      "id": "tt8332922",
+      "title": "A Quiet Place Part II",
+      "fullTitle": "A Quiet Place Part II (2020)",
+      "year": "2020",
+      "releaseState": "May 28",
+      "image": "https://m.media-amazon.com/images/M/MV5BMTE2ODU4NDEtNmRjNS00OTk1LTg4NmMtNTAzYzVlNzJmYjgzXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_UX128_CR0,4,128,176_AL_.jpg",
+      "runtimeMins": "97",
+      "runtimeStr": "1h 37mins",
+      "plot": "Following the events at home, the Abbott family now face the terrors of the outside world. Forced to venture into the unknown, they realize the creatures that hunt by sound are not the only threats lurking beyond the sand path.",
+      "contentRating": "PG-13",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "74",
+      "genres": "Drama, Horror, Sci-Fi, Thriller",
+      "genreList": [
+        { "key": "Drama", "value": "Drama" },
+        { "key": "Horror", "value": "Horror" },
+        { "key": "Sci-Fi", "value": "Sci-Fi" },
+        { "key": "Thriller", "value": "Thriller" }
+      ],
+      "directors": "John Krasinski",
+      "directorList": [{ "id": "nm1024677", "name": "John Krasinski" }],
+      "stars": "Emily Blunt, Millicent Simmonds, Cillian Murphy, John Krasinski",
+      "starList": [
+        { "id": "nm1289434", "name": "Emily Blunt" },
+        { "id": "nm8075925", "name": "Millicent Simmonds" },
+        { "id": "nm0614165", "name": "Cillian Murphy" },
+        { "id": "nm1024677", "name": "John Krasinski" }
+      ]
+    },
+    {
+      "id": "tt13863334",
+      "title": "Endangered Species",
+      "fullTitle": "Endangered Species (2021)",
+      "year": "2021",
+      "releaseState": "May 28",
+      "image": "https://m.media-amazon.com/images/M/MV5BNWZmYTZjYzAtYWZjNS00NjgyLWE2MjYtZjZmNTUwMTZmODNjXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_UX128_CR0,4,128,176_AL_.jpg",
+      "runtimeMins": "101",
+      "runtimeStr": "1h 41mins",
+      "plot": "ENDANGERED SPECIES is an intense, action packed survival-adventure about a wealthy American family who travel to the vast African wilderness of Kenya hoping for a dream vacation filled with excitement, bonding and a chance to fix the growing rifts within their family. But when their safari vehicle is attacked by a rhino protecting her calf, the family is left stranded miles from help and their dream vacation turns into a nightmarish struggle for survival in a world where they are the bottom of the food chain.",
+      "contentRating": "R",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "",
+      "genres": "Action, Thriller",
+      "genreList": [
+        { "key": "Action", "value": "Action" },
+        { "key": "Thriller", "value": "Thriller" }
+      ],
+      "directors": "M.J. Bassett",
+      "directorList": [{ "id": "nm1068186", "name": "M.J. Bassett" }],
+      "stars": "Rebecca Romijn, Philip Winchester, Isabel Bassett, Michael Johnston",
+      "starList": [
+        { "id": "nm0005381", "name": "Rebecca Romijn" },
+        { "id": "nm0934618", "name": "Philip Winchester" },
+        { "id": "nm3932445", "name": "Isabel Bassett" },
+        { "id": "nm5076257", "name": "Michael Johnston" }
+      ]
+    },
+    {
+      "id": "tt7050946",
+      "title": "American Traitor: The Trial of Axis Sally",
+      "fullTitle": "American Traitor: The Trial of Axis Sally (2021)",
+      "year": "2021",
+      "releaseState": "May 28",
+      "image": "https://m.media-amazon.com/images/M/MV5BZmU3YzVkNWMtZTg0Ni00Yjk3LWFhMjgtMDc3ODIxYTNlNGM2XkEyXkFqcGdeQXVyMTEyNDk3MjY3._V1_UX128_CR0,4,128,176_AL_.jpg",
+      "runtimeMins": "109",
+      "runtimeStr": "1h 49mins",
+      "plot": "An American woman named Mildred Gillars broadcast Nazi propaganda during World War II. She was dubbed Axis Sally by the American GIs who simultaneously loved and hated her. The story plunges the viewer into the dark underbelly of the Third Reich's hate-filled propaganda machine, Sally's eventual capture, and subsequent trial for treason in Washington D.C. after the war.",
+      "contentRating": "R",
+      "imDbRating": "",
+      "imDbRatingCount": "",
+      "metacriticRating": "",
+      "genres": "Drama",
+      "genreList": [{ "key": "Drama", "value": "Drama" }],
+      "directors": "Michael Polish",
+      "directorList": [{ "id": "nm0689187", "name": "Michael Polish" }],
+      "stars": "Al Pacino, Meadow Williams, Mitch Pileggi, Thomas Kretschmann",
+      "starList": [
+        { "id": "nm0000199", "name": "Al Pacino" },
+        { "id": "nm0816508", "name": "Meadow Williams" },
+        { "id": "nm0683379", "name": "Mitch Pileggi" },
+        { "id": "nm0470981", "name": "Thomas Kretschmann" }
+      ]
+    }
+  ],
+  "errorMessage": ""
+}
