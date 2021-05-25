@@ -62,7 +62,8 @@ const fetchMovieInfo = async (moviesList) => {
     const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${movie.id}&apikey=4ec0b2b9`);
     const respInfo = await fetchMoviesInfo.json();
 
-    const name = respInfo.Title,
+    const id = movie.id,
+      name = respInfo.Title,
       genre = respInfo.Genre,
       rating = respInfo.imdbRating,
       poster = respInfo.Poster,
@@ -70,14 +71,14 @@ const fetchMovieInfo = async (moviesList) => {
       crew = respInfo.Actors,
       year = respInfo.Year,
       runtime = respInfo.Runtime;
-
+    console.log(id);
     await loadingModal.classList.add('loading-show');
 
     allNavigationBtns.forEach(btn =>
       btn.classList.add('disable-btn')
     );
 
-    createMoviePrev(name, genre, rating, poster, director, crew, year, runtime);
+    createMoviePrev(id, name, genre, rating, poster, director, crew, year, runtime);
   }
 
   await loadingModal.classList.remove('loading-show');
@@ -88,9 +89,10 @@ const fetchMovieInfo = async (moviesList) => {
 
 };
 
-const createMoviePrev = (name, genre, rating, poster, director, crew, year, runtime) => {
+const createMoviePrev = (id, name, genre, rating, poster, director, crew, year, runtime) => {
   const newMovie = document.createElement('div');
   newMovie.className = 'movie__prev';
+  newMovie.setAttribute('data-id', `${id}`);
 
   if (poster.toLowerCase() == 'n/a') {
     poster = 'img/empty-poster.jpg';
@@ -167,13 +169,26 @@ const filterMovies = () => {
 
   movies.forEach(movie => {
     const movieYear = +movie.querySelector('.movie__year').textContent.slice(0, 4);
+    const movieGenre = movie.querySelector('.movie__genre').textContent.toLowerCase();
+    const genreCheckbox = document.querySelectorAll('.genre-checkbox');
+    let checkedCheckbox = [];
+
+    const checkGenres = (checkedGenres, allGenres) => checkedGenres.every(genre => allGenres.includes(genre));
+
+    const genresArr = movieGenre.split(", ");
+
+    genreCheckbox.forEach(checkbox => {
+      if (checkbox.checked) {
+        checkedCheckbox.push(checkbox.value);
+      }
+    });
+
     movie.classList.remove('display-none');
-    
-    if (!(movieYear > movieYearFilterData.old_from && movieYear < movieYearFilterData.old_to)) {
+
+    if (!(movieYear > movieYearFilterData.old_from && movieYear < movieYearFilterData.old_to && checkGenres(checkedCheckbox, genresArr))) {
       movie.classList.add('display-none');
     }
   });
-
 };
 
 
