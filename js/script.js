@@ -11,7 +11,18 @@ const contentList = document.querySelector('#content-list'),
   movieFIlterBtn = document.querySelector('#movie-filter-btn');
 
 const allNavigationBtns = document.querySelectorAll('.menu__name');
+let moviesPrevs = [];
+let movieSingleInfo;
+let singleMovieCloseBtn;
 
+const updateMoviePreviews = () => {
+  moviesPrevs = document.querySelectorAll('.movie__prev');
+};
+
+const updateMovieSingle = () => {
+  movieSingleInfo = document.querySelector('#movie-single-info');
+  singleMovieCloseBtn = movieSingleInfo.querySelector('#movie-single-close-btn');
+};
 
 const fetchSoonMovies = async () => {
   const movies = await fetch('js/soon.json');
@@ -71,7 +82,7 @@ const fetchMovieInfo = async (moviesList) => {
       crew = respInfo.Actors,
       year = respInfo.Year,
       runtime = respInfo.Runtime;
-    console.log(id);
+
     await loadingModal.classList.add('loading-show');
 
     allNavigationBtns.forEach(btn =>
@@ -86,6 +97,17 @@ const fetchMovieInfo = async (moviesList) => {
     btn.classList.remove('disable-btn');
   }
 
+  await updateMoviePreviews();
+
+  moviesPrevs.forEach(movie => {
+    const moviePoster = movie.querySelector('.movie__poster');
+    const movieId = movie.dataset.id;
+
+    moviePoster.addEventListener('click', () => {
+      fetchSingleMovie(movieId);
+    });
+
+  });
 
 };
 
@@ -165,9 +187,9 @@ const movieYearFilterData = $(".js-range-slider").data("ionRangeSlider");
 
 
 const filterMovies = () => {
-  const movies = document.querySelectorAll('.movie__prev');
+  moviesPrevs = document.querySelectorAll('.movie__prev');
 
-  movies.forEach(movie => {
+  moviesPrevs.forEach(movie => {
     const movieYear = +movie.querySelector('.movie__year').textContent.slice(0, 4);
     const movieGenre = movie.querySelector('.movie__genre').textContent.toLowerCase();
     const genreCheckbox = document.querySelectorAll('.genre-checkbox');
@@ -195,3 +217,105 @@ const filterMovies = () => {
 movieFIlterBtn.addEventListener('click', () => {
   filterMovies();
 });
+
+
+//Create single movie
+const createSingleMovie = (poster, title, release, dir, act, genre, plot, runtime, imdb, metacr, rt) => {
+  const singleMovie = document.createElement('div');
+  singleMovie.className = 'movie-single__info';
+  singleMovie.setAttribute('id', 'movie-single-info');
+  singleMovie.innerHTML = `
+  <div class="movie-single-block">
+    <div id="movie-single-close-btn" class="movie-single__close">
+      <img src="img/close-btn.svg" alt="close-movie" class="movie-single__close-btn">
+    </div>
+    <div class="movie-single__poster">
+      <img src=${poster} alt="poster" class="movie-single__poster-img">
+    </div>
+    <div class="movie-single__info">
+      <h2 class="movie-single__title">${title}</h2>
+      <div class="movie-single__main-info">
+        <div class="single-info">
+          <p class="single-info__title">Релиз</p>
+          <p class="single-info__descr">${release}</p>
+        </div>
+        <div class="single-info">
+          <p class="single-info__title">Режиссер</p>
+          <p class="single-info__descr">${dir}</p>
+        </div>
+        <div class="single-info">
+          <p class="single-info__title">Актеры</p>
+          <p class="single-info__descr">${act}</p>
+        </div>
+        <div class="single-info">
+          <p class="single-info__title">Жанр</p>
+          <p class="single-info__descr">${genre}</p>
+        </div>
+        <div class="single-info">
+          <p class="single-info__title">Сюжет</p>
+          <p class="single-info__descr">${plot}</p>
+        </div>
+        <div class="single-info">
+          <p class="single-info__title">Время</p>
+          <p class="single-info__descr">${runtime}</p>
+        </div>
+      </div>
+      <div class="movie-single__ratings">
+        <div class="movie-single__rating">
+          <div class="movie-single__rating-number">${imdb}</div>
+          <div class="movie-single__rating-name">IMDb</div>
+        </div>
+        <div class="movie-single__rating">
+          <div class="movie-single__rating-number">${metacr}</div>
+          <div class="movie-single__rating-name">MetaCritic</div>
+        </div>
+        <div class="movie-single__rating">
+          <div class="movie-single__rating-number">${rt}</div>
+          <div class="movie-single__rating-name">Rotten Tomatoes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+
+  contentList.parentElement.append(singleMovie);
+};
+
+const fetchSingleMovie = async (id) => {
+  const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=4ec0b2b9`);
+  const respInfo = await fetchMoviesInfo.json();
+
+  const poster = respInfo.Poster,
+    name = respInfo.Title,
+    release = respInfo.Released,
+    dir = respInfo.Director,
+    act = respInfo.Actors,
+    genre = respInfo.Genre,
+    plot = respInfo.Plot,
+    runtime = respInfo.Runtime;
+
+  let imdb = 'N/A',
+    metacr = 'N/A',
+    rt = 'N/A';
+
+  respInfo.Ratings.forEach(rating => {
+    switch (rating.Source) {
+      case "Internet Movie Database":
+        imdb = rating.Value;
+        break;
+      case "Metacritic":
+        metacr = rating.Value;
+        break;
+      case "Rotten Tomatoes":
+        rt = rating.Value;
+        break;
+    }
+  });
+
+  createSingleMovie(poster, name, release, dir, act, genre, plot, runtime, imdb, metacr, rt);
+  updateMovieSingle();
+
+  singleMovieCloseBtn.addEventListener('click', () => {
+    movieSingleInfo.remove();
+  });
+};
