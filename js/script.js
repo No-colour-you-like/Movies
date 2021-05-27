@@ -66,48 +66,70 @@ const fetchCinemaMovies = async () => {
   await fetchMovieInfo(cinemaMovies);
 };
 
+let page = 0;
+const prevsAmount = 16;
+
 //Fetch movie info and create preview in HTML
 const fetchMovieInfo = async (moviesList) => {
-  for await (const movie of moviesList) {
-    const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${movie.id}&apikey=4ec0b2b9`);
-    const respInfo = await fetchMoviesInfo.json();
+  const loadPageBtn = document.querySelector('#load-page-btn');
 
-    const id = movie.id,
-      name = respInfo.Title,
-      genre = respInfo.Genre,
-      rating = respInfo.imdbRating,
-      poster = respInfo.Poster,
-      director = respInfo.Director,
-      crew = respInfo.Actors,
-      year = respInfo.Year,
-      runtime = respInfo.Runtime;
 
-    await loadingModal.classList.add('loading-show');
-
-    allNavigationBtns.forEach(btn =>
-      btn.classList.add('disable-btn')
-    );
-
-    createMoviePrev(id, name, genre, rating, poster, director, crew, year, runtime);
-  }
-
-  await loadingModal.classList.remove('loading-show');
-  for await (const btn of allNavigationBtns) {
-    btn.classList.remove('disable-btn');
-  }
-
-  await updateMoviePreviews();
-
-  moviesPrevs.forEach(movie => {
-    const moviePoster = movie.querySelector('.movie__poster');
-    const movieId = movie.dataset.id;
-
-    moviePoster.addEventListener('click', () => {
-      fetchSingleMovie(movieId);
-    });
-
+  const paginate = (items, pageNum) => {
+    let start = pageNum * prevsAmount;
+    const shortList = items.slice(start, start + prevsAmount);
+    page++;
+    return shortList;
+  };
+  
+  loadPageBtn.addEventListener('click', () => {
+    fetchMovies();
   });
 
+  
+  
+  const fetchMovies = async () => {
+    console.log(paginate(moviesList, page));
+    for await (const movie of paginate(moviesList, page)) {
+      const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${movie.id}&apikey=4ec0b2b9`);
+      const respInfo = await fetchMoviesInfo.json();
+  
+      const id = movie.id,
+        name = respInfo.Title,
+        genre = respInfo.Genre,
+        rating = respInfo.imdbRating,
+        poster = respInfo.Poster,
+        director = respInfo.Director,
+        crew = respInfo.Actors,
+        year = respInfo.Year,
+        runtime = respInfo.Runtime;
+  
+      await loadingModal.classList.add('loading-show');
+  
+      allNavigationBtns.forEach(btn =>
+        btn.classList.add('disable-btn')
+      );
+  
+      createMoviePrev(id, name, genre, rating, poster, director, crew, year, runtime);
+    }
+
+    await loadingModal.classList.remove('loading-show');
+    for await (const btn of allNavigationBtns) {
+      btn.classList.remove('disable-btn');
+    }
+  
+    await updateMoviePreviews();
+
+    moviesPrevs.forEach(movie => {
+      const moviePoster = movie.querySelector('.movie__poster');
+      const movieId = movie.dataset.id;
+  
+      moviePoster.addEventListener('click', () => {
+        fetchSingleMovie(movieId);
+      });
+    });
+  };
+
+  await fetchMovies();
 };
 
 //Create movie preview div
@@ -220,7 +242,7 @@ movieFIlterBtn.addEventListener('click', () => filterMovies());
 //Create single movie div
 const createSingleMovie = (poster, title, release, dir, act, genre, plot, runtime, imdb, metacr, rt) => {
   const singleMovie = document.createElement('div');
-  singleMovie.className = 'movie-single__info';
+  singleMovie.className = 'movie-single__all-info';
   singleMovie.setAttribute('id', 'movie-single-info');
   singleMovie.innerHTML = `
   <div class="movie-single-block">
@@ -284,8 +306,7 @@ const fetchSingleMovie = async (id) => {
   const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=4ec0b2b9`);
   const respInfo = await fetchMoviesInfo.json();
 
-  const poster = respInfo.Poster,
-    name = respInfo.Title,
+  const name = respInfo.Title,
     release = respInfo.Released,
     dir = respInfo.Director,
     act = respInfo.Actors,
@@ -293,7 +314,8 @@ const fetchSingleMovie = async (id) => {
     plot = respInfo.Plot,
     runtime = respInfo.Runtime;
 
-  let imdb = 'N/A',
+  let poster = respInfo.Poster,
+    imdb = 'N/A',
     metacr = 'N/A',
     rt = 'N/A';
 
@@ -310,6 +332,10 @@ const fetchSingleMovie = async (id) => {
         break;
     }
   });
+
+  if (poster.toLowerCase() === 'n/a') {
+    poster = 'img/empty-poster.jpg';
+  }
 
   createSingleMovie(poster, name, release, dir, act, genre, plot, runtime, imdb, metacr, rt);
   updateMovieSingle();
@@ -351,8 +377,8 @@ contentSort.addEventListener('change', () => {
             ratingB = b.querySelector('.movie__rating').textContent;
           return returnSort(ratingA, ratingB);
         case 'runtime':
-          const runtimeA = a.querySelector('.movie__runtime').textContent,
-            runtimeB = b.querySelector('.movie__runtime').textContent;
+          const runtimeA = +a.querySelector('.movie__runtime').textContent.slice(0, -3),
+            runtimeB = +b.querySelector('.movie__runtime').textContent.slice(0, -3);
           return returnSort(runtimeA, runtimeB);
       }
     });
@@ -366,16 +392,16 @@ contentSort.addEventListener('change', () => {
       sortMovies(1, -1, 'name');
       break;
     case 'year-up':
-      sortMovies(-1, 1, 'year');
-      break;
-    case 'year-down':
       sortMovies(1, -1, 'year');
       break;
+    case 'year-down':
+      sortMovies(-1, 1, 'year');
+      break;
     case 'imdb-up':
-      sortMovies(-1, 1, 'imdb');
+      sortMovies(1, -1, 'imdb');
       break;
     case 'imdb-down':
-      sortMovies(1, -1, 'imdb');
+      sortMovies(-1, 1, 'imdb');
       break;
     case 'runtime-up':
       sortMovies(1, -1, 'runtime');
