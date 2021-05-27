@@ -179,8 +179,26 @@ h2 {
   background-color: #222B31FF;
 }
 
-.content__title {
-  margin: 0 0 30px 35px;
+.content__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 40px 20px;
+}
+
+.content__sort {
+  display: flex;
+  align-items: center;
+}
+
+.content__sort-text {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.content__sort-input {
+  padding: 3px 8px;
+  font-size: 18px;
 }
 
 .content__list {

@@ -8,9 +8,10 @@ const contentList = document.querySelector('#content-list'),
   top250MoviesBtn = document.querySelector('#top-250-movies'),
   top250TvBtn = document.querySelector('#top-250-tv'),
   loadingModal = document.querySelector('#loading-modal'),
-  movieFIlterBtn = document.querySelector('#movie-filter-btn');
+  movieFIlterBtn = document.querySelector('#movie-filter-btn'),
+  contentSort = document.querySelector('#content-sort'),
+  allNavigationBtns = document.querySelectorAll('.menu__name');
 
-const allNavigationBtns = document.querySelectorAll('.menu__name');
 let moviesPrevs = [];
 let movieSingleInfo;
 let singleMovieCloseBtn;
@@ -24,6 +25,7 @@ const updateMovieSingle = () => {
   singleMovieCloseBtn = movieSingleInfo.querySelector('#movie-single-close-btn');
 };
 
+//Fetch movies name from files
 const fetchSoonMovies = async () => {
   const movies = await fetch('js/soon.json');
   const resp = await movies.json();
@@ -48,7 +50,6 @@ const fetch250Tv = async () => {
   await fetchMovieInfo(top250tv);
 };
 
-
 const fetchPopularMovies = async () => {
   const movies = await fetch('js/popular.json');
   const resp = await movies.json();
@@ -65,9 +66,7 @@ const fetchCinemaMovies = async () => {
   await fetchMovieInfo(cinemaMovies);
 };
 
-const controller = new AbortController();
-const signal = controller.signal;
-
+//Fetch movie info and create preview in HTML
 const fetchMovieInfo = async (moviesList) => {
   for await (const movie of moviesList) {
     const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${movie.id}&apikey=4ec0b2b9`);
@@ -111,6 +110,7 @@ const fetchMovieInfo = async (moviesList) => {
 
 };
 
+//Create movie preview div
 const createMoviePrev = (id, name, genre, rating, poster, director, crew, year, runtime) => {
   const newMovie = document.createElement('div');
   newMovie.className = 'movie__prev';
@@ -148,6 +148,7 @@ const clearListAndTilte = (titleText) => {
   contentTitle.textContent = titleText;
 };
 
+//Download all movies on click
 top250MoviesBtn.addEventListener('click', () => {
   clearListAndTilte('Топ 250 IMDb');
   fetch250Movies();
@@ -185,7 +186,7 @@ $(".js-range-slider").ionRangeSlider({
 
 const movieYearFilterData = $(".js-range-slider").data("ionRangeSlider");
 
-
+//Filter movies with settings
 const filterMovies = () => {
   moviesPrevs = document.querySelectorAll('.movie__prev');
 
@@ -213,13 +214,10 @@ const filterMovies = () => {
   });
 };
 
-
-movieFIlterBtn.addEventListener('click', () => {
-  filterMovies();
-});
+movieFIlterBtn.addEventListener('click', () => filterMovies());
 
 
-//Create single movie
+//Create single movie div
 const createSingleMovie = (poster, title, release, dir, act, genre, plot, runtime, imdb, metacr, rt) => {
   const singleMovie = document.createElement('div');
   singleMovie.className = 'movie-single__info';
@@ -281,6 +279,7 @@ const createSingleMovie = (poster, title, release, dir, act, genre, plot, runtim
   contentList.parentElement.append(singleMovie);
 };
 
+//Fetch single movie all info
 const fetchSingleMovie = async (id) => {
   const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=4ec0b2b9`);
   const respInfo = await fetchMoviesInfo.json();
@@ -319,3 +318,76 @@ const fetchSingleMovie = async (id) => {
     movieSingleInfo.remove();
   });
 };
+
+//Sort movies by click select
+contentSort.addEventListener('change', () => {
+  updateMoviePreviews();
+
+  const moviesPrevsArr = [...moviesPrevs];
+
+  const sortMovies = (wayOne, wayTwo, type) => {
+    moviesPrevsArr.sort((a, b) => {
+      const returnSort = (itemA, itemB) => {
+        if (itemA < itemB) {
+          return wayOne;
+        }
+
+        if (itemA > itemB) {
+          return wayTwo;
+        }
+      };
+
+      switch (type) {
+        case 'name':
+          const nameA = a.querySelector('.movie__name').textContent.toLowerCase(),
+            nameB = b.querySelector('.movie__name').textContent.toLowerCase();
+          return returnSort(nameA, nameB);
+        case 'year':
+          const yearA = +a.querySelector('.movie__year').textContent,
+            yearB = +b.querySelector('.movie__year').textContent;
+          return returnSort(yearA, yearB);
+        case 'imdb':
+          const ratingA = a.querySelector('.movie__rating').textContent,
+            ratingB = b.querySelector('.movie__rating').textContent;
+          return returnSort(ratingA, ratingB);
+        case 'runtime':
+          const runtimeA = a.querySelector('.movie__runtime').textContent,
+            runtimeB = b.querySelector('.movie__runtime').textContent;
+          return returnSort(runtimeA, runtimeB);
+      }
+    });
+  };
+
+  switch (contentSort.value.toLowerCase()) {
+    case 'a-z':
+      sortMovies(-1, 1, 'name');
+      break;
+    case 'z-а':
+      sortMovies(1, -1, 'name');
+      break;
+    case 'year-up':
+      sortMovies(-1, 1, 'year');
+      break;
+    case 'year-down':
+      sortMovies(1, -1, 'year');
+      break;
+    case 'imdb-up':
+      sortMovies(-1, 1, 'imdb');
+      break;
+    case 'imdb-down':
+      sortMovies(1, -1, 'imdb');
+      break;
+    case 'runtime-up':
+      sortMovies(1, -1, 'runtime');
+      break;
+    case 'runtime-down':
+      sortMovies(-1, 1, 'runtime');
+      break;
+  }
+
+  contentList.innerHTML = '';
+
+  moviesPrevsArr.forEach((prev, i) => {
+    contentList.append(moviesPrevsArr[i]);
+  });
+});
