@@ -10,7 +10,10 @@ const contentList = document.querySelector('#content-list'),
   loadingModal = document.querySelector('#loading-modal'),
   movieFIlterBtn = document.querySelector('#movie-filter-btn'),
   contentSort = document.querySelector('#content-sort'),
-  allNavigationBtns = document.querySelectorAll('.menu__name');
+  allNavigationBtns = document.querySelectorAll('.menu__name'),
+  searchInput = document.querySelector('#search-input'),
+  searchInfoBlock = document.querySelector('#search-info-block'),
+  searchResetBtn = document.querySelector('#search-reset-btn');
 
 let moviesPrevs = [];
 let movieSingleInfo;
@@ -66,6 +69,9 @@ const fetchCinemaMovies = async () => {
   await fetchMovieInfo(cinemaMovies);
 };
 
+
+// ================== Movie previews ===========================
+
 //Make movie pages and set max view movies (16)
 let page = 0;
 const prevsAmount = 16;
@@ -95,10 +101,10 @@ const fetchMovieInfo = (moviesList) => {
         year = respInfo.Year,
         runtime = respInfo.Runtime;
 
-      //Loading icon show when movies download
+      //Loading icon show when movies load
       await loadingModal.classList.add('loading-show');
 
-      //Menu buttons disablet when moves download
+      //Menu buttons disablet when moves load
       allNavigationBtns.forEach(btn =>
         btn.classList.add('disable-btn')
       );
@@ -133,10 +139,8 @@ const fetchMovieInfo = (moviesList) => {
       loadPageBtn.classList.remove('visibile-btn');
     }
 
-    //Add click-event on load-button for download more movies
-    loadPageBtn.onclick = function () {
-      fetchMovies(paginate(moviesList, page));
-    };
+    //Add click-event on load-button for load more movies
+    loadPageBtn.onclick = () => fetchMovies(paginate(moviesList, page));
   };
 
   fetchMovies(paginate(moviesList, page));
@@ -175,13 +179,16 @@ const createMoviePrev = (id, name, genre, rating, poster, director, crew, year, 
 };
 
 
+//========================== Load movies lists =====================
+
+//Clear movie list, change list title, and reset page
 const clearListAndTilte = (titleText) => {
   page = 0;
   contentList.innerHTML = '';
   contentTitle.textContent = titleText;
 };
 
-//Download all movies on click
+//Load all movies on click
 top250MoviesBtn.addEventListener('click', () => {
   clearListAndTilte('Топ 250 IMDb');
   fetch250Movies();
@@ -206,6 +213,9 @@ soonBtn.addEventListener('click', () => {
   clearListAndTilte('Скоро в прокате');
   fetchSoonMovies();
 });
+
+
+// ====================== Filter movies ======================
 
 //Year filter slider 
 $(".js-range-slider").ionRangeSlider({
@@ -249,6 +259,8 @@ const filterMovies = () => {
 
 movieFIlterBtn.addEventListener('click', () => filterMovies());
 
+
+//===================== Make single movie in modal ============================
 
 //Create single movie div
 const createSingleMovie = (poster, title, release, dir, act, genre, plot, runtime, imdb, metacr, rt) => {
@@ -354,6 +366,8 @@ const fetchSingleMovie = async (id) => {
   singleMovieCloseBtn.onclick = () => movieSingleInfo.remove();
 };
 
+//================== Sort movies ======================
+
 //Sort movies by click select
 contentSort.addEventListener('change', () => {
   updateMoviePreviews();
@@ -426,3 +440,71 @@ contentSort.addEventListener('change', () => {
     contentList.append(moviesPrevsArr[i]);
   });
 });
+
+
+//===================== Search ====================
+
+//Search movie by input
+searchInput.addEventListener('input', () => {
+  const inputValue = searchInput.value;
+
+  searchInfoBlock.innerHTML = '';
+  fetchMovieSearch(inputValue);
+});
+
+//Reset search data from input
+searchResetBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  searchInfoBlock.innerHTML = '';
+});
+
+//Fetch movie for search
+const fetchMovieSearch = async (movieName) => {
+  const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?t=${movieName}&apikey=4ec0b2b9`);
+  const respInfo = await fetchMoviesInfo.json();
+
+  const id = respInfo.imdbID,
+    name = respInfo.Title,
+    year = respInfo.Year,
+    dir = respInfo.Director,
+    genre = respInfo.Genre;
+
+  let poster = respInfo.Poster;
+
+  if (poster === 'N/A') {
+    poster = 'img/empty-poster.jpg';
+  }
+
+  if (name !== undefined) {
+    createFoundMovie(id, poster, name, dir, genre, year);
+  }
+
+  const foundMovie = document.querySelectorAll('.found-movie');
+
+  foundMovie.forEach(movie => {
+    movie.onclick = () => {
+      fetchSingleMovie(movie.dataset.id);
+    };
+  });
+};
+
+//Create found movie html
+const createFoundMovie = (id, poster, name, dir, genre, year) => {
+  const foundMovie = document.createElement('div');
+  foundMovie.className = 'found-movie';
+  foundMovie.setAttribute('id', 'found-movie');
+  foundMovie.setAttribute('data-id', `${id}`);
+  foundMovie.innerHTML = `
+    <div class="found-movie__poster">
+      <img src=${poster} alt="found-poster" class="found-movie__poster-img">
+    </div>
+    <div class="found-movie__info">
+      <p class="found-movie__name">${name}</p>
+      <p class="found-movie__dir">Режиссер: ${dir}</p>
+      <p class="found-movie__genre">Жанр: ${genre}</p>
+      <p class="found-movie__genre">Год: ${year}</p>
+    </div>
+  `;
+
+  searchInfoBlock.append(foundMovie);
+};

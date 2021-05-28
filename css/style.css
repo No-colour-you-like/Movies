@@ -92,6 +92,7 @@ h2 {
 }
 
 .search-movie {
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -113,6 +114,71 @@ h2 {
 
 .search-input::placeholder {
   color: #fff;
+}
+
+.search-info {
+  position: absolute;
+  width: 400px;
+  max-height: 600px;
+  right: 0;
+  top: 45px;
+  background-color: rgba(25, 28, 31, 0.9);
+  overflow-y: scroll;
+  z-index: 10;
+}
+
+.search-info::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 30px;
+}
+
+.search-info::-webkit-scrollbar-thumb {
+  border-radius: 30px;
+  background-color: #ff767f;
+}
+
+.search-reset {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.found-movie {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.found-movie__poster {
+  min-width: 160px;
+  max-width: 160px;
+  margin-right: 20px;
+}
+
+.found-movie__poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.found-movie__name {
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.found-movie__dir, .found-movie__genre {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .main {
@@ -467,6 +533,7 @@ h2 {
   font-size: 18px;
   cursor: pointer;
   box-shadow: 0 0 30px #191C1FFF;
+  z-index: 10;
 }
 
 .movie-single__close-btn {
