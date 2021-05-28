@@ -105,8 +105,8 @@
       font-size: 18px
       option
   &__list 
-    height: 870px
-    padding: 20px 0
+    height: 810px
+    padding: 20px 0  
     display: grid
     grid-template-columns: repeat(4, 1fr)
     grid-row-gap: 68px
@@ -309,6 +309,7 @@
     &-btn 
       width: 50px
       height: 50px
+      pointer-events: none
     
 .single-info 
   display: flex
@@ -323,11 +324,18 @@
     font-size: 20px
 
 .load-page-btn 
+  visibility: hidden
   position: absolute
-  width: 50px 
-  height: 50px
-  background-color: #fff
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 10px 15px
+  bottom: 25px
+  left: 50%
+  transform: translateX(-50%)
+  background-color: #FF424FFF
   cursor: pointer
+  z-index: 10
 
 @keyframes loading-animation
   0%

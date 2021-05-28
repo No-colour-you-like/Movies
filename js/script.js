@@ -66,33 +66,25 @@ const fetchCinemaMovies = async () => {
   await fetchMovieInfo(cinemaMovies);
 };
 
+//Make movie pages and set max view movies (16)
 let page = 0;
 const prevsAmount = 16;
 
-//Fetch movie info and create preview in HTML
-const fetchMovieInfo = async (moviesList) => {
-  const loadPageBtn = document.querySelector('#load-page-btn');
+//Cut movielist to 16 movies and change page
+const paginate = (items, pageNum) => {
+  let start = pageNum * prevsAmount;
+  const shortList = items.slice(start, start + prevsAmount);
+  page++;
+  return shortList;
+};
 
-
-  const paginate = (items, pageNum) => {
-    let start = pageNum * prevsAmount;
-    const shortList = items.slice(start, start + prevsAmount);
-    page++;
-    return shortList;
-  };
-  
-  loadPageBtn.addEventListener('click', () => {
-    fetchMovies();
-  });
-
-  
-  
-  const fetchMovies = async () => {
-    console.log(paginate(moviesList, page));
-    for await (const movie of paginate(moviesList, page)) {
+//Fetch movie info, create preview in HTML, update load btn
+const fetchMovieInfo = (moviesList) => {
+  const fetchMovies = async (shortList) => {
+    for await (const movie of shortList) {
       const fetchMoviesInfo = await fetch(`http://www.omdbapi.com/?i=${movie.id}&apikey=4ec0b2b9`);
       const respInfo = await fetchMoviesInfo.json();
-  
+
       const id = movie.id,
         name = respInfo.Title,
         genre = respInfo.Genre,
@@ -102,34 +94,52 @@ const fetchMovieInfo = async (moviesList) => {
         crew = respInfo.Actors,
         year = respInfo.Year,
         runtime = respInfo.Runtime;
-  
+
+      //Loading icon show when movies download
       await loadingModal.classList.add('loading-show');
-  
+
+      //Menu buttons disablet when moves download
       allNavigationBtns.forEach(btn =>
         btn.classList.add('disable-btn')
       );
-  
+
       createMoviePrev(id, name, genre, rating, poster, director, crew, year, runtime);
     }
 
     await loadingModal.classList.remove('loading-show');
+
     for await (const btn of allNavigationBtns) {
       btn.classList.remove('disable-btn');
     }
-  
+
     await updateMoviePreviews();
 
     moviesPrevs.forEach(movie => {
       const moviePoster = movie.querySelector('.movie__poster');
       const movieId = movie.dataset.id;
-  
+
       moviePoster.addEventListener('click', () => {
         fetchSingleMovie(movieId);
       });
     });
+
+    //Update load-movies button
+    const loadPageBtn = document.querySelector('#load-page-btn');
+
+    //Show or hide load-movies button
+    if (shortList.length == prevsAmount) {
+      loadPageBtn.classList.add('visibile-btn');
+    } else {
+      loadPageBtn.classList.remove('visibile-btn');
+    }
+
+    //Add click-event on load-button for download more movies
+    loadPageBtn.onclick = function () {
+      fetchMovies(paginate(moviesList, page));
+    };
   };
 
-  await fetchMovies();
+  fetchMovies(paginate(moviesList, page));
 };
 
 //Create movie preview div
@@ -166,6 +176,7 @@ const createMoviePrev = (id, name, genre, rating, poster, director, crew, year, 
 
 
 const clearListAndTilte = (titleText) => {
+  page = 0;
   contentList.innerHTML = '';
   contentTitle.textContent = titleText;
 };
@@ -201,8 +212,8 @@ $(".js-range-slider").ionRangeSlider({
   type: "double",
   min: 1900,
   max: 2021,
-  from: 1950,
-  to: 1960,
+  from: 2000,
+  to: 2021,
   grid: false
 });
 
@@ -340,9 +351,7 @@ const fetchSingleMovie = async (id) => {
   createSingleMovie(poster, name, release, dir, act, genre, plot, runtime, imdb, metacr, rt);
   updateMovieSingle();
 
-  singleMovieCloseBtn.addEventListener('click', () => {
-    movieSingleInfo.remove();
-  });
+  singleMovieCloseBtn.onclick = () => movieSingleInfo.remove();
 };
 
 //Sort movies by click select
