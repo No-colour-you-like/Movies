@@ -30,7 +30,7 @@ const updateMovieSingle = () => {
 
 //Fetch movies name from files
 const fetchSoonMovies = async () => {
-  const movies = await fetch('../js/soon.json');
+  const movies = await fetch('./js/soon.json');
   const resp = await movies.json();
   const soonMovies = await resp.items;
 
@@ -38,7 +38,7 @@ const fetchSoonMovies = async () => {
 };
 
 const fetch250Movies = async () => {
-  const movies = await fetch('../js/top250movies.json');
+  const movies = await fetch('./js/top250movies.json');
   const resp = await movies.json();
   const top250 = await resp.items;
 
@@ -46,7 +46,7 @@ const fetch250Movies = async () => {
 };
 
 const fetch250Tv = async () => {
-  const movies = await fetch('../js/top250tv.json');
+  const movies = await fetch('./js/top250tv.json');
   const resp = await movies.json();
   const top250tv = await resp.items;
 
@@ -54,7 +54,7 @@ const fetch250Tv = async () => {
 };
 
 const fetchPopularMovies = async () => {
-  const movies = await fetch('../js/popular.json');
+  const movies = await fetch('./js/popular.json');
   const resp = await movies.json();
   const popularMovies = await resp.items;
 
@@ -62,7 +62,7 @@ const fetchPopularMovies = async () => {
 };
 
 const fetchCinemaMovies = async () => {
-  const movies = await fetch('../js/cinema.json');
+  const movies = await fetch('./js/cinema.json');
   const resp = await movies.json();
   const cinemaMovies = await resp.items;
 
