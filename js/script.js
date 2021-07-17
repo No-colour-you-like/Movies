@@ -190,27 +190,27 @@ const clearListAndTilte = (titleText) => {
 
 //Load all movies on click
 top250MoviesBtn.addEventListener('click', () => {
-  clearListAndTilte('Топ 250 IMDb');
+  clearListAndTilte('Top 250 IMDb');
   fetch250Movies();
 });
 
 popularBtn.addEventListener('click', () => {
-  clearListAndTilte('Популярные');
+  clearListAndTilte('Popular');
   fetchPopularMovies();
 });
 
 top250TvBtn.addEventListener('click', () => {
-  clearListAndTilte('Топ 250 TV IMDb');
+  clearListAndTilte('Top 250 TV IMDb');
   fetch250Tv();
 });
 
 cinemaBtn.addEventListener('click', () => {
-  clearListAndTilte('В прокате');
+  clearListAndTilte('In theaters');
   fetchCinemaMovies();
 });
 
 soonBtn.addEventListener('click', () => {
-  clearListAndTilte('Скоро в прокате');
+  clearListAndTilte('Coming soon');
   fetchSoonMovies();
 });
 
@@ -279,27 +279,27 @@ const createSingleMovie = (poster, title, release, dir, act, genre, plot, runtim
       <h2 class="movie-single__title">${title}</h2>
       <div class="movie-single__main-info">
         <div class="single-info">
-          <p class="single-info__title">Релиз</p>
+          <p class="single-info__title">Release</p>
           <p class="single-info__descr">${release}</p>
         </div>
         <div class="single-info">
-          <p class="single-info__title">Режиссер</p>
+          <p class="single-info__title">Director</p>
           <p class="single-info__descr">${dir}</p>
         </div>
         <div class="single-info">
-          <p class="single-info__title">Актеры</p>
+          <p class="single-info__title">Actors</p>
           <p class="single-info__descr">${act}</p>
         </div>
         <div class="single-info">
-          <p class="single-info__title">Жанр</p>
+          <p class="single-info__title">Genre</p>
           <p class="single-info__descr">${genre}</p>
         </div>
         <div class="single-info">
-          <p class="single-info__title">Сюжет</p>
+          <p class="single-info__title">Plot</p>
           <p class="single-info__descr">${plot}</p>
         </div>
         <div class="single-info">
-          <p class="single-info__title">Время</p>
+          <p class="single-info__title">Runtime</p>
           <p class="single-info__descr">${runtime}</p>
         </div>
       </div>

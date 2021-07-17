@@ -26,7 +26,7 @@
         </div>
         <div class="search-movie">
           <img src="img/search.svg" alt="search-icon" class="search-icon">
-          <input id="search-input" type="text" class="search-input" placeholder="Найти фильм...">
+          <input id="search-input" type="text" class="search-input" placeholder="Find movie...">
           <div id="search-reset-btn" class="search-reset">&#10006</div>
           <div id="search-info-block" class="search-info">
           </div>
@@ -37,7 +37,7 @@
           <nav class="menu__navigation">
             <div id="cinema-btn" class="menu__name">
               <p class="menu__name-text">
-                В кинотеатрах
+                In theaters
               </p>
               <div class="menu__name-arrow">
                 &#8594
@@ -45,7 +45,7 @@
             </div>
             <div id="soon-btn" class="menu__name">
               <p class="menu__name-text">
-                Скоро в прокате
+                Coming soon
               </p>
               <div class="menu__name-arrow">
                 &#8594
@@ -53,7 +53,7 @@
             </div>
             <div id="popular-btn" class="menu__name">
               <p class="menu__name-text">
-                Популярные
+                Popular
               </p>
               <div class="menu__name-arrow">
                 &#8594
@@ -61,7 +61,7 @@
             </div>
             <div id="top-250-movies" class="menu__name">
               <p class="menu__name-text">
-                Топ 250 IMDb
+                Top 250 IMDb
               </p>
               <div class="menu__name-arrow">
                 &#8594
@@ -69,7 +69,7 @@
             </div>
             <div id="top-250-tv" class="menu__name">
               <p class="menu__name-text">
-                Топ 250 TV IMDb
+                Top 250 TV IMDb
               </p>
               <div class="menu__name-arrow">
                 &#8594
@@ -80,11 +80,11 @@
           <div class="menu__divider"></div>
           <div class="movie__filter">
             <div class="movie__filter-single">
-              <p class="movie__filter-year-title">Год</p>
+              <p class="movie__filter-year-title">Year</p>
               <input type="text" class="js-range-slider" name="my_range" value="" />
             </div>
             <div class="movie__filter-single">
-              <p class="movie__filter-genre-title">Жанр</p>
+              <p class="movie__filter-genre-title">Genre</p>
               <div class="movie__filter-check">
                 <input class="genre-checkbox" value="drama" id="drama-checkbox" type="checkbox">
                 <label for="drama-checkbox">Drama</label>
@@ -138,32 +138,32 @@
                 <label for="war-checkbox">War</label>
               </div>
             </div>
-            <button id="movie-filter-btn" class="movie__filter-btn">Найти</button>
+            <button id="movie-filter-btn" class="movie__filter-btn">Find</button>
           </div>
         </aside>
         <div class="content">
           <div class="content__header">
             <h1 id="content-title" class="content__title"></h1>
             <div class="content__sort">
-              <p class="content__sort-text">Сортировать по:</p>
+              <p class="content__sort-text">Sort by:</p>
               <select id="content-sort" type="text" class="content__sort-input">
-                <option value="" selected disabled>Выберите</option>
-                <option value="a-z">&#8595 А-Я</option>
-                <option value="z-а">&#8593 А-Я</option>
-                <option value="year-up">&#8595 Год</option>
-                <option value="year-down">&#8593 Год</option>
-                <option value="imdb-up">&#8595 Рейтинг IMDb</option>
-                <option value="imdb-down">&#8593 Рейтинг IMDb</option>
-                <option value="runtime-up">&#8595 Время</option>
-                <option value="runtime-down">&#8593 Время</option>
+                <option value="" selected disabled>Select</option>
+                <option value="a-z">&#8595 A-Z</option>
+                <option value="z-а">&#8593 Z-A</option>
+                <option value="year-up">&#8595 Year</option>
+                <option value="year-down">&#8593 Year</option>
+                <option value="imdb-up">&#8595 Rating IMDb</option>
+                <option value="imdb-down">&#8593 Rating IMDb</option>
+                <option value="runtime-up">&#8595 Time</option>
+                <option value="runtime-down">&#8593 Time</option>
               </select>
             </div>
           </div>
-          <div id="load-page-btn" class="load-page-btn">Загрузить еще</div>
+          <div id="load-page-btn" class="load-page-btn">More</div>
           <div id="content-list" class="content__list">
           </div>
           <div id="loading-modal" class="content__loading">
-            <p class="content__loading-text">Загружаем...</p>
+            <p class="content__loading-text">Loading...</p>
             <div class="content__loading-icon"></div>
           </div>
         </div>
